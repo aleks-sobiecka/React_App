@@ -1,0 +1,13 @@
+@import '../../styles/settings.scss';
+
+.cardForm {
+    text-align: center;
+    padding: 10px;
+}
+
+@media (max-width: 599px) {
+
+    button {
+        display: block;
+    }
+}
