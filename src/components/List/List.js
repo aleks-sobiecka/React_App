@@ -1,8 +1,7 @@
 import styles from './List.module.scss';
 import Column from '../Column/Column';
 import ColumnForm from '../ColumnForm/ColumnForm';
-import { useState } from 'react';
-import shortid from 'shortid';
+import { useSelector } from 'react-redux';
 
 
 const List = () => {
@@ -10,7 +9,7 @@ const List = () => {
   //stwórz nowy stan (“zmienną”) o wartości startowej równej tablicy z kolumnami
   //przypisz referencję do jej wartości pod stałą columns
   //funkcję do zmiany wartości tego stanu przypisz do stałej setColumns
-  const [columns, setColumns] = useState([
+  /*const [columns, setColumns] = useState([
     {
       id: 1,
       title: 'Books',
@@ -53,8 +52,9 @@ const List = () => {
         return column
     })
     setColumns(columnsUpdated);
-  };
+  };*/
 
+  const columns = useSelector(state => state.columns);
 
   return (
     <div className={styles.list}>
@@ -63,9 +63,9 @@ const List = () => {
       </header>
       <p className={styles.description}>Interesting things I want to check out</p>
       <section className={styles.columns}>
-        {columns.map(column => <Column key={column.id} id={column.id} title={column.title} icon={column.icon} cards={column.cards} action={addCard} />)}
+        {columns.map(column => <Column key={column.id} {...column} />)}
       </section>
-      <ColumnForm action={addColumn} />
+      <ColumnForm />
     </div>
   );
 };
