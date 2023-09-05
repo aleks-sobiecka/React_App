@@ -1,6 +1,13 @@
 import { createStore } from 'redux';
 import initialState from './initialState';
 import shortid from 'shortid';
+import strContains from '../utils/strContains';
+
+//selectors
+export const getFilteredCards = ({ cards, searchString }, columnId) => cards
+  .filter(card => card.columnId === columnId && strContains(card.title, searchString));
+
+export const getAllColumns = state => state.columns;
 
 //funkcia, która służy do modyfikacji danych
 //pierwszy argument - aktualny stan
