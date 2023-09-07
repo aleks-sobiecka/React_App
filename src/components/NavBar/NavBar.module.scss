@@ -1,5 +1,6 @@
 @import '../../styles/settings.scss';
 
+
 .nav {
     background: darken($color-dark, 3%);
     font-size: 24;
@@ -18,9 +19,12 @@
         margin: 0 24px;
 
         a {
-        color: $color-light;
-        text-decoration: none;
+            color: $color-light;
+            text-decoration: none;
         }
+        .linkActive {
+                color: $color-warning;
+            }
+        
     }
 }
-
