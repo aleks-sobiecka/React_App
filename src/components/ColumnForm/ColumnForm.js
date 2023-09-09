@@ -17,7 +17,7 @@ const ColumnForm = props => {
         e.preventDefault();
         //props.action({ title: title, icon: icon });
         //dispatch({ type: 'ADD_COLUMN', payload: { title, icon } });
-        dispatch(addColumn({ title, icon }));
+        dispatch(addColumn({ listId: props.listId, title, icon }));
         setTitle('');
         setIcon('');
     }
