@@ -22,3 +22,19 @@
 .favorite {
     color: $color-warning;
 }
+
+.trash {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.trash:focus {
+    border: none;
+    border-radius: 50%;
+    background-color: $color-yellow;
+}
+
+form {
+    display: inline-block;
+}
