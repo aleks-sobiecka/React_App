@@ -1,29 +1,15 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
-import strContains from '../utils/strContains';
-
-//selectors
-export const getFilteredCards = ({ cards, searchString }, columnId) => 
-  cards.filter(card => card.columnId === columnId && strContains(card.title, searchString));
-export const getFavoriteCards = ({ cards }) => cards.filter(card => card.isFavorite === true );
-export const getAllColumns = state => state.columns;
-export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
-export const getColumnsByList = ({ columns }, listId) => columns.filter(column => column.listId === listId);
-export const getAllLists = state => state.lists;
-
-// action creators
-export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload });
-export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
-export const addList = payload => ({ type: 'ADD_LIST', payload });
-export const toggleCardFavorite = payload => ({ type: 'TOGGLE_CARD_FAVORITE', payload});
+import listsReducer from './listsRedux';
+import columnsReducer from './columnsRedux';
+import cardsReducer from './cardsRedux';
+import searchStringReducer from './searchStringRedux';
 
 
 //funkcia, która służy do modyfikacji danych
 //pierwszy argument - aktualny stan
 //drugi argument - obiekt akcji z informacją, co trzeba zmienić i w jaki sposób
-const reducer = (state, action) => {
+/* reducer = (state, action) => {
   switch(action.type) {
     case 'ADD_COLUMN' :
       return { ...state, columns: [...state.columns, {...action.payload, id: shortid() }]}
@@ -38,7 +24,17 @@ const reducer = (state, action) => {
     default: 
       return state;
   }
-};
+}; */
+
+const subreducers = {
+    lists: listsReducer,
+    columns: columnsReducer,
+    cards: cardsReducer,
+    searchString: searchStringReducer
+  };
+
+const reducer = combineReducers(subreducers); 
+
 
 //pierwszy argument - funkcja która odpowiada za modyfikację danych z magazynu
 //drugi argument - informacja o danych startowych magazynu
