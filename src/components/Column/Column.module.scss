@@ -5,15 +5,16 @@
   flex-shrink: 0;
   width: calc(33% - 12px);
   background: $color-light;
-  margin: 0 $base-size $base-size 0;
+  //margin: 0 $base-size $base-size 0;
+  margin: 0 auto $base-size auto;
   padding: ($base-size * 1.5);
   border-radius: $radius;
   box-shadow: 0 math.div($base-size, 4) 0 rgba(0,0,0,0.3);
   color: $color-dark;
 
-  &:last-child {
+ /* &:last-child {
     margin: 0 0 $base-size 0;
-  }
+  } */
 }
 
 .title {
